@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Final Test Grade Calculator</title>
+<link href ="style.css" rel ="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<script src = "main.js"></script>
+
+</head>
+
+<body>
+    <h1>
+        Final Test Grade Calculator
+    </h1>
+
+    <form id = "getInput" name = "getInput">
+        <p1 id = "para">Current Grade: </p1>
+        <input id = "textbox" type = "text" name = "has" maxlength = "1000" placeholder = "Enter number here ie. 93"><br>
+        <p2 id = "para">Grade needed to reach or maintain: </p2>
+        <input id = "textbox" type = "text" name = "need" maxlength = "1000" placeholder = "Enter number here ie. 93"><br>
+        <p3 id = "para">Final's Percentage of Grade: </p3>
+        <input id = "textbox" type = "text" name = "finalPercent" maxlength = "1000" placeholder = "Enter number here ie. 93"><br>
+        <input id = "button" type = "button" value = "Done!" onclick = "done();"> <br>
+    </form>
+
+    <div id = "after_enter"> <!--box that contains the output-->
+        <p id = "output"></p> <!--the first thing printed in output-->
+    </div>
+</body>
+</html>
+
+<script>
+    function done () {
+        document.getElementById("after_enter").style.visibility = "visible"; // makes the box for the output appear
+
+        var currentGrade = document.getInput.has.value;
+        var necessaryGrade = document.getInput.need.value;
+        var finalPercent = document.getInput.finalPercent.value / 100;
+
+        var final = (necessaryGrade - currentGrade * (1 - finalPercent)) / finalPercent;
+
+        document.getElementById("output").innerHTML = "Final Grade Needed: " + Math.round(final*10000)/10000;
+    }
+</script>
+
+<style>
+    body { /*css for the body*/
+        font-family: 'Lato', sans-serif; /*changes the font*/
+        background-image: linear-gradient(to right, #7fe1ff, #49dacd); /*makes the gradient*/
+    }
+
+    h1{ /*css for the header*/
+        color:white; /*setting color to white*/
+        text-shadow: 1px 1px #ff887f; /*adding drop shadow*/
+    }
+
+    p{ /*css for the output*/
+        font-weight:bold; /*makes the font bold*/
+        color:white; /*makes the font color white*/
+        font-size:20px; /*makes the font size 20*/
+    }
+
+    #para { 
+        font-weight:bold; /*makes the font bold*/
+        color:white; /*makes the font color white*/
+        font-size:20px; /*makes the font size 20*/
+    }
+
+    #textbox {
+        min-width:10.5%;
+    }
+
+    #button { /*css for the button*/
+        background: #ff887f; /*sets the color*/
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        color: white; /*sets the font color*/
+        font-size: 16px; /*sets the font size*/
+        transition-duration: .5s; /*sets the time between the button css and the css when hovering over it*/
+        margin-top: 15px;
+    }
+
+    #button:hover { /*css for the button hover*/
+        background: white; /*sets the inside to white*/
+        border: 1px solid #ff887f; /*sets the border color*/
+        color: #ff887f; /*sets the font color*/
+        cursor: pointer;
+    }
+
+    #after_submit { /*css for the box with the output*/
+        visibility: hidden; /*starts hidden and only appears when the button is clicked*/
+        background: #ff887f; /*sets background color*/
+        /*positioning*/
+        position: absolute;
+        top: 23.25%;
+        right: 69%;
+        padding: 10px 20px 10px 20px;
+        width: 400px;
+        border-radius: 20px;
+        margin-left: 20px;
+        font-size: 30px;
+    }
+</style>
